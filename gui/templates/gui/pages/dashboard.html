@@ -1,0 +1,336 @@
+{% extends 'gui/layouts/_base2.html' %}
+
+
+
+
+{% block content %}
+
+<div class="text-center m-4">
+    <h1>Dashboard</h1>
+</div>
+
+<main>
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="card">
+                <div class="card-header">
+                    Pays
+                    <a href="#" class="btn list-group-item-warning float-end" data-bs-toggle="modal" 
+                    data-bs-target="#paysModal" data-bs-whatever="@mdo">
+                        Ajouter
+                    </a>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for p in pays %}
+                        <li class="list-group-item">{{ p.nom_pays }} ({{p.code_pays}})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card">
+                <div class="card-header">
+                    Provinces
+                    <a href="#" class="btn list-group-item-warning float-end" data-bs-toggle="modal" 
+                    data-bs-target="#provinceModal" data-bs-whatever="@mdo">
+                        Ajouter
+                    </a>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for province in provinces %}
+                        <li class="list-group-item">{{ province.nom_province }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card">
+                <div class="card-header">
+                    Villes
+                    <a href="#" class="btn list-group-item-warning float-end" data-bs-toggle="modal" 
+                    data-bs-target="#villeModal" data-bs-whatever="@mdo">
+                        Ajouter
+                    </a>                
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for ville in villes %}
+                        <li class="list-group-item">{{ ville.nom_ville }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-header">
+                  Lieux
+                    <a href="#" class="btn list-group-item-warning float-end" data-bs-toggle="modal" 
+                        data-bs-target="#lieuModal" data-bs-whatever="@mdo">
+                        Ajouter
+                    </a> 
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for lieu in lieux %}
+                        <li class="list-group-item">{{ lieu.nom_lieu }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-header">
+                    Types
+                    <a href="#" class="btn list-group-item-warning float-end" data-bs-toggle="modal" 
+                        data-bs-target="#typeModal" data-bs-whatever="@mdo">
+                        Ajouter
+                    </a>                 
+                </div>
+                <ul class="list-group list-group-flush">
+                  {% for type in types %}
+                        <li class="list-group-item">{{ type.nom_type }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+    <!-- Modal add pays -->
+    <div class="modal fade" id="paysModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter un pays</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form method="POST">
+
+              {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="username" class="pl-2">Nom du pays : </label>
+                    {{ paysForm.nom_pays }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="pl-2">Code du pays : </label>
+                    {{ paysForm.code_pays }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn list-group-item-info">Ajouter pays</button>
+                </div>
+                
+              </form>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+
+     <!-- Modal add province -->
+    <div class="modal fade" id="provinceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter un province</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form method="POST">
+
+              {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="username" class="pl-2">Nom de la province : </label>
+                    {{ provinceForm.nom_province }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="pl-2">Pays : </label>
+                    {{ provinceForm.pays }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn list-group-item-info">Ajouter pays</button>
+                </div>
+                
+              </form>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+
+    <!-- Modal add ville -->
+    <div class="modal fade" id="villeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter une ville</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form method="POST">
+
+              {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="nom_ville" class="pl-2">Nom de la ville : </label>
+                    {{ villeForm.nom_ville }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="description_ville" class="pl-2">Description : </label>
+                    {{ villeForm.description_ville }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="province" class="pl-2">Province : </label>
+                    {{ villeForm.province }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="province" class="pl-2">Image de la ville : </label>
+                    {{ villeForm.image_ville }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn list-group-item-info">Ajouter province</button>
+                </div>
+                
+              </form>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal add type -->
+    <div class="modal fade" id="typeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter un type</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form method="POST">
+
+              {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="nom_ville" class="pl-2">Nom du type : </label>
+                    {{ typeForm.nom_type }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn list-group-item-info">Ajouter province</button>
+                </div>
+                
+              </form>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+
+    <!-- Modal add lieu -->
+    <div class="modal fade" id="lieuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter un lieu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form method="POST">
+
+              {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="nom_lieu" class="pl-2">Nom du lieu : </label>
+                    {{ lieuForm.nom_lieu }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="longitude" class="pl-2">Longitude : </label>
+                    {{ lieuForm.longitude }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="latitude" class="pl-2">Latitude : </label>
+                    {{ lieuForm.latitude }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="description_Lieu" class="pl-2">Description : </label>
+                    {{ lieuForm.description_Lieu }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="type" class="pl-2">Type : </label>
+                    {{ lieuForm.type }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="ville" class="pl-2">Ville : </label>
+                    {{ lieuForm.ville }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="image_1" class="pl-2">Image du lieu : </label>
+                    {{ lieuForm.image_1 }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn list-group-item-info">Ajouter province</button>
+                </div>
+                
+              </form>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

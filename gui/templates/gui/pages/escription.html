@@ -1,0 +1,55 @@
+{% extends 'gui/layouts/_base2.html' %}
+
+
+
+
+{% block content %}
+
+
+<main class="w-50 mx-auto">
+
+    <h1 class="text-center m-5 p-2">Creation du compte</h1>
+
+    <form method="POST">
+
+        {% if messages %}
+            <ul class="message p-0" style="list-style-type: none;">
+                {% for message in messages %}
+                    <li class="list-group-item-success"
+                    style="font-size:14px; padding: 15px; text-align:center;">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="username" class="ml-2">Nom d'utilisateur :</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="email" class="ml-2">
+                Adresse Electronique :
+            </label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="password1" class="ml-2">Mot de passe :</label>
+            {{ form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="password2" class="ml-2">Mot de passe de confirmation :</label>
+            {{ form.password2 }}
+        </div>
+
+        <div class="mt-5">
+            <button type="submit" class="btn btn-dark">Créer compte</button>
+        </div>
+
+    </form>
+
+</main>
+
+{% endblock content %}

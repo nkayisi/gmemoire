@@ -1,0 +1,36 @@
+/* body{
+    background-color: #ebebeb86;
+} */
+
+.icon-ville{
+    color: gray;
+}
+
+.ville:hover {
+    box-shadow: 1px 1px 8px gray;
+    background-color: rgba(255, 215, 128, 0.048);
+    cursor: pointer;
+    transition: 1.4s;
+    margin: -3px;
+}
+
+.my-btn {
+	border-radius: 100px;
+}
+
+.outline{
+	margin-left: 70px;
+    margin-right: 10px;
+	background-color: transparent;
+    border: 1px solid #1ce;
+    color: white;
+}
+
+.outline:hover {
+    color: #1ce;
+}
+
+.account {
+    background-color: rgb(209, 104, 18);
+    color: white;
+}

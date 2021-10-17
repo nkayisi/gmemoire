@@ -1,0 +1,51 @@
+    <div class="header customer-header">
+        <div class="container">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{% url 'accueil' %}" class="navbar-brand"><em>K</em>ivu - <em>t</em>rip</a>
+                </div>
+                <!--/.navbar-header-->
+                <div id="main-nav" class="collapse navbar-collapse">
+
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="{% url 'accueil' %}" >Accueil</a></li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="about">Villes</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="contact-us">Contact - nous</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="{% url 'evenement' %}">EVENEMENT</a>
+                        </li>
+
+                        {% if request.user.is_staff %}
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        {% endif %}
+
+                        {% if request.user.is_anonymous %}
+						    <a href="{% url 'login' %}" class="btn my-btn outline">Connexion</a>
+                        {% else %}
+                            <a href="{% url 'logout' %}" class="btn my-btn outline">Déconnexion</a>
+                        {% endif %}
+                        {% if request.user.is_anonymous %}
+						<a href="{% url 'creer-compte' %}" class="btn my-btn account">Crée un compte</a>
+						{% endif %}
+                    </ul>
+                </div>
+                <!--/.navbar-collapse-->
+            </nav>
+            <!--/.navbar-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.header-->

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static 'gui/style/bootstrap.min.css' %}" />
+
+</head>
+<body>
+
+    <div class="content-cards pt-5">
+        <h1 class="text-info text-center">Connexion</h1>
+    </div>
+    <hr class="mt-5 mx-auto" style="width: 85%;">
+
+    <div class="container height-lg d-flex  mt-5 pt-5">
+            <form action="" method="POST" class="w-25 mx-auto">
+                {% csrf_token %}
+                <div class="mb-3 pb-4">
+                    <label for="username" class="pl-2">Nom d'utilisateur :</label>
+                    <input type="text" name="username" placeholder="Entrer le nom d'utilisateur" class="form-control radius-field card-shadow">
+                </div>
+                <div class="mt-3 pb-4">
+                    <label for="password" class="pl-2">Mot de passe :</label>
+                    <input type="password" name="password" placeholder="Entrer le mot de passe" class="form-control radius-field card-shadow">
+                </div>
+
+                {% if messages %}
+                    <ul class="message p-0" style="list-style-type: none;">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="text-danger message.tags"{% endif %} 
+                            style="font-size:12px; text-align:center;">
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                    <div class="content-cards">
+                        <p style="font-size: 12px;">Vouz avez pas encore un compte ? <a href="{% url 'creer-compte' %}">Créer un compte</a></p>
+                    </div>
+
+                <div class="mt-4 content-cards text-center">
+                    <button class="btn btn-outline-info radius-field pl-5 pr-5">Se connecter</button>
+                </div>
+            </form>
+    </div>
+    
+</body>
+</html>

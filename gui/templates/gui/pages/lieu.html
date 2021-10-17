@@ -1,0 +1,70 @@
+{% extends 'gui/layouts/_base2.html' %}
+
+
+
+
+{% block content %}
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="text-center justify-item-center">
+                <h2 class="p-2">Catégories</h2>
+                <hr class="w-25 mx-auto" style="border: 2px solid orangered;">
+            </div>
+
+            <div class="text-center">
+                    <a class="btn btn-outline-primary rounded-pill mt-3" href="{% url 'lieu' town.id %}">
+                        Tous
+                    </a>
+                {% for category in categories %}
+                    <a class="btn btn-outline-dark rounded-pill mt-3" href="{% url 'lieu-categorie' town.id category.id %}">
+                        {{category.nom_type}}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-8 p-0 m-0">
+
+            <div class="row justify-content-center">
+
+                {% if not places %}
+                
+                    <div class="p-5 mb-4 bg-light rounded-3 mt-5">
+                    <div class="container-fluid py-5">
+                        <h1 class="display-5 fw-bold">Ooops...!!!</h1>
+                        <p class="col-md-8 fs-4">
+                            Aucun lieu à visité dans cette ville pour le moment viellez revenir plus tard, c'est sûr, vous en trouverez pas mal des lieus sublime pour une visite sympa
+                        </p>
+                        <a href="#" class="btn btn-outline-primary rounded-pill" type="button">Visitez un autre villes</a>
+                    </div>
+                    </div>
+                
+                {% endif %}
+
+                {% for place in places %}
+                    <div class="col-md-4 mt-2">
+                        <div class="card ville">
+                            {% if place.image_1 %}
+                            <img src="{{place.image_1.url}}" class="card-img-top" alt="...">
+                            {% endif %}
+                            <div class="card-body text-center">
+                                <h3 class="card-title">{{place.nom_lieu}}</h3>
+                                <p class="card-text">{{place.description_Lieu}}</p>
+                                <a href="{% url 'itineraire' %}" class="btn btn-sm btn-outline-info rounded-pill pt-2 px-3">Suivre l'ituneraire</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,34 @@
+.title {
+    font-size: 35px;
+}
+
+
+.my-btn {
+	margin-top: 23px !important;
+	border-radius: 100px;
+}
+
+
+.outline{
+	margin-left: 70px;
+    margin-right: 10px;
+	background-color: transparent;
+    border: 1px solid #1ce;
+    color: white;
+}
+
+.outline:hover {
+    color: #1ce;
+}
+
+.account {
+    background-color: rgb(209, 104, 18);
+    color: white;
+    margin-left: 30px;
+}
+
+/* .customer-header {
+	background-color: #343434;
+    opacity: .8;
+} */
+
